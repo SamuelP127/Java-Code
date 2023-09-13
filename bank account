@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class BankAccount{
+    public static void main(String[]args)
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Thanks for banking with us! Please enter youur name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Hi!" + name);
+
+    }
+}
