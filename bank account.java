@@ -1,12 +1,15 @@
 import java.util.Scanner;
 
-public class BankAccount{
+public class test{
     public static void main(String[]args)
     {
         Scanner scanner = new Scanner(System.in);
-        
+
         System.out.println("Do you bank with us? (Yes or No)");
-        String account = scanner.nextLine();
+        String account = scanner.nextLine().toUpperCase();
+        account = account.substring(0, 1).toUpperCase() + account.substring(1).toLowerCase();
+        
+
         if(account.equals("Yes")){
 
         System.out.println("Thanks for banking with us! Please enter youur name: ");
@@ -25,5 +28,8 @@ public class BankAccount{
         } else {
           System.out.println("Invalid input");
         }
+        scanner.close();
     }
 }
+    
+
