@@ -1,35 +1,85 @@
 import java.util.Scanner;
 
-public class test{
+class Account {
+    private String name;
+    private double balance;
+
+    public Account(String name, double initialBalance) {
+        this.name = name;
+        this.balance = initialBalance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
+}
+
+public class Bankaccount{
     public static void main(String[]args)
     {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Do you bank with us? (Yes or No)");
-        String account = scanner.nextLine().toUpperCase();
-        account = account.substring(0, 1).toUpperCase() + account.substring(1).toLowerCase();
-        
+        String account = "";
+        while (!account.equals("Yes") && !account.equals("No")) {
+            System.out.println("Do you bank with us? (Yes or No)");
+            account = scanner.nextLine().toUpperCase();
+            account = account.substring(0, 1).toUpperCase() + account.substring(1).toLowerCase();
+
+            if (!account.equals("Yes") && !account.equals("No")) {
+                System.out.println("Invalid input. Please enter 'Yes' or 'No'.");
+            }
+        }
 
         if(account.equals("Yes")){
 
-        System.out.println("Thanks for banking with us! Please enter youur name: ");
-        String name = scanner.nextLine();
+            double min = 0;
+            double max = 10000;
+            double money = (double)Math.floor(Math.random() * (max - min + 1) + min);
 
-        System.out.println("Hi! " + name);
-        
-        System.out.println("How much money do you currently have? ");
-        String holder = scanner.nextLine();
-        double money = Double.parseDouble(holder);
-        
-        System.out.println("Great! With $" + money + " you will be rich in no time!");
-        
+            System.out.println("Thanks for banking with us! Please enter your name: ");
+            String name = scanner.nextLine();
+
+            System.out.println("Hi! " + name + " you currently have $" + money);
+            
+            
+            System.out.println("With $" + money + " you will be rich in no time!");
+
         } else if(account.equals("No")){
-          System.out.println("You don't have an account with us");
-        } else {
-          System.out.println("Invalid input");
+            System.out.println("You don't have an account with us");
+            System.out.println("Would you like to make an account (Yes or No)");
+            String wantsIt = scanner.nextLine().toUpperCase();
+            wantsIt = wantsIt.substring(0, 1).toUpperCase() + wantsIt.substring(1).toLowerCase();
+            
+            if(wantsIt.equals("Yes")){
+                System.out.println("Please enter your name: ");
+                String name = scanner.nextLine();
+
+                System.out.println("Please enter your initial deposit amount: ");
+                String initialDeposit = scanner.nextLine();
+                double depositAmount = Double.parseDouble(initialDeposit);
+
+                Account newAccount = new Account(name, depositAmount);
+
+                System.out.println("Account created successfully!");
+                System.out.println("Welcome, " + newAccount.getName() + "!");
+                System.out.println("Your current balance is $" + newAccount.getBalance());
+            } else {
+                System.out.println("Thank you for considering us. Have a great day!");
+            }
         }
+
         scanner.close();
     }
 }
-    
-
