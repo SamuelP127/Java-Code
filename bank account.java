@@ -53,10 +53,39 @@ public class Bankaccount{
 
             System.out.println("Hi! " + name + " you currently have $" + money);
             
-            
-            System.out.println("With $" + money + " you will be rich in no time!");
+            String option = "";
+            System.out.println("Would you like to make a deposit or withdrawl today? ");
+            option = scanner.nextLine().toUpperCase();
+            option = option.substring(0, 1).toUpperCase() + option.substring(1).toLowerCase();
 
-        } else if(account.equals("No")){
+            if(option.equals("Deposit")){
+                System.out.println("How much would you like to deposit today?");
+                double deposit = Double.parseDouble(scanner.nextLine());
+                money += deposit;
+                System.out.println("You now have $" + money);
+                System.out.println();
+
+            } else if (option.equals("Withdrawal")) { 
+                System.out.println("How much would you like to withdraw today?");
+                double withdrawal = Double.parseDouble(scanner.nextLine());
+                money -= withdrawal;
+                System.out.println("You now have $" + money);
+                System.out.println();
+            }
+            boolean deal;
+                if(money > 1000){
+                    deal = true;
+                    if(deal){
+                    System.out.println("Because you're such a valued customer here, we can offer you 2% interest rate compounded monthly!");
+                    System.out.println("This means that next month you will have $" + money * 1.02);
+                    System.out.println();
+                
+                    System.out.println("Have a great day valued customer!");
+                    }
+                }
+        }
+       
+        else if(account.equals("No")){
             System.out.println("You don't have an account with us");
             System.out.println("Would you like to make an account (Yes or No)");
             String wantsIt = scanner.nextLine().toUpperCase();
@@ -75,6 +104,11 @@ public class Bankaccount{
                 System.out.println("Account created successfully!");
                 System.out.println("Welcome, " + newAccount.getName() + "!");
                 System.out.println("Your current balance is $" + newAccount.getBalance());
+                System.out.println();
+                System.out.println("New accounts get a special deal of 3% interest rate compounded monthly!");
+                System.out.println("If you stay with us, next month you will have $" + newAccount.getBalance() * 1.03);
+                System.out.println();
+                System.out.println("Have a great day, valued customer!");
             } else {
                 System.out.println("Thank you for considering us. Have a great day!");
             }
