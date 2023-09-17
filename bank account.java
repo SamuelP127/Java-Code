@@ -54,9 +54,15 @@ public class Bankaccount{
             System.out.println("Hi! " + name + " you currently have $" + money);
             
             String option = "";
-            System.out.println("Would you like to make a deposit or withdrawl today? ");
-            option = scanner.nextLine().toUpperCase();
-            option = option.substring(0, 1).toUpperCase() + option.substring(1).toLowerCase();
+            while (!option.equals("Deposit") && !option.equals("Withdrawal")) {
+                System.out.println("Would you like to make a deposit or withdrawal today? ");
+                option = scanner.nextLine().toUpperCase();
+                option = option.substring(0, 1).toUpperCase() + option.substring(1).toLowerCase();
+
+                if(!account.equals("Deposit") && !account.equals("Withdrawal")){
+                    System.out.println("Invalid input, please enter 'Deposit' or 'Withdrawal'");
+                }
+            }
 
             if(option.equals("Deposit")){
                 System.out.println("How much would you like to deposit today?");
@@ -64,8 +70,8 @@ public class Bankaccount{
                 money += deposit;
                 System.out.println("You now have $" + money);
                 System.out.println();
-
-            } else if (option.equals("Withdrawal")) { 
+            } 
+            else if (option.equals("Withdrawal")){ 
                 System.out.println("How much would you like to withdraw today?");
                 double withdrawal = Double.parseDouble(scanner.nextLine());
                 money -= withdrawal;
