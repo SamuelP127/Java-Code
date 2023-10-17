@@ -38,7 +38,7 @@ public class Bankaccount{
             account = account.substring(0, 1).toUpperCase() + account.substring(1).toLowerCase();
 
             if (!account.equals("Yes") && !account.equals("No")) {
-                System.out.println("Invalid input. Please enter 'Yes' or 'No'.");
+                System.out.println("Invalid input. Please enter \"Yes\" or \"No\".");
             }
         }
 
@@ -56,11 +56,10 @@ public class Bankaccount{
             String option = "";
             while (!option.equals("Deposit") && !option.equals("Withdrawal")) {
                 System.out.println("Would you like to make a deposit or withdrawal today? ");
-                scanner = new Scanner(System.in);
                 option = scanner.nextLine().toUpperCase();
                 option = option.substring(0, 1).toUpperCase() + option.substring(1).toLowerCase();
 
-                if(!option.equals("Deposit") && !option.equals("Withdrawal")){
+                if(!account.equals("Deposit") && !account.equals("Withdrawal")){
                     System.out.println("Invalid input, please enter 'Deposit' or 'Withdrawal'");
                 }
             }
