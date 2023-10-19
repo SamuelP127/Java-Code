@@ -5,10 +5,11 @@ public class Main {
         Random rand = new Random();
         Scanner s = new Scanner(System.in);
         int max = 101;
-        int randNum = rand.nextInt(max);
+        int min = 1;
+        int randNum = rand.nextInt(min, max);
         boolean game = true;
         int guess;
-        System.out.println("Guess the number 0 - 100!");
+        System.out.println("Guess the number 1 - 100!");
         while(game){
             guess = s.nextInt();
             if(guess < randNum){
