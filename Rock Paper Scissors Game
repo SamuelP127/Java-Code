@@ -1,0 +1,36 @@
+import java.util.Scanner;
+import java.util.Random;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    Random rand = new Random();
+    int max = 4;
+    int min = 1;
+    int aiGuess = rand.nextInt(max - min) + min; // Generate a random number between 1 and 3
+    System.out.println("Rock(1), Paper(2), or Scissors(3)?");
+    int userGuess = s.nextInt();
+
+    if (userGuess == aiGuess) {
+      System.out.print("Tie!");
+    }
+    else if (userGuess == 1 && aiGuess == 2) {
+      System.out.print("You Lose! The AI chose Paper, which beats rock.");
+    }
+    else if (userGuess == 1 && aiGuess == 3) {
+      System.out.print("You Win! The AI chose Scissors, which loses to rock");
+    }
+    else if (userGuess == 2 && aiGuess == 1) {
+      System.out.print("You Win! The AI chose Rock, which loses to paper");
+    }
+    else if (userGuess == 2 && aiGuess == 3) {
+      System.out.print("You Lose! The AI chose Scissors, which beats paper");
+    }
+    else if (userGuess == 3 && aiGuess == 1) {
+      System.out.print("You Lose! The AI chose Rock, which beats scissors");
+    }
+    else if (userGuess == 3 && aiGuess == 2) {
+      System.out.print("You Win! The AI chose Paper, which loses to scissors");
+    }
+  }
+}
