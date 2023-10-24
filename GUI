@@ -1,0 +1,36 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+public class GUI{
+    public static void main(String[]args){
+        JFrame frame = new JFrame("Random Number Generator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,150);
+
+        JPanel panel = new JPanel();
+        frame.add(panel);
+
+        JLabel label = new JLabel("Random Number: ");
+        panel.add(label);
+
+        JButton generateButton = new JButton("Generate");
+        panel.add(generateButton);
+
+        JTextField numberField = new JTextField(10);
+        numberField.setEditable(false);
+        panel.add(numberField);
+
+        generateButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            Random random = new Random();
+            int randomNumber = random.nextInt(1000);
+            numberField.setText(String.valueOf(randomNumber));
+        }
+        });
+        frame.setVisible(true);
+    }
+}
