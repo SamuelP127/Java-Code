@@ -2,35 +2,73 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
-public class GUI{
-    public static void main(String[]args){
-        JFrame frame = new JFrame("Random Number Generator");
+public class GUI {
+    private static int score = 0;
+    private static int round = 1;
+    private static JLabel scoreLabel;
+    private static JLabel roundLabel;
+    private static JLabel numberLabel;
+    private static JFrame frame;
+
+    public static void main(String[] args) {
+        frame = new JFrame("Number Memory Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,150);
+        frame.setSize(400, 200);
+        frame.setLayout(new GridLayout(3, 1));
 
-        JPanel panel = new JPanel();
-        frame.add(panel);
+        scoreLabel = new JLabel("Score: " + score);
+        roundLabel = new JLabel("Round: " + round);
+        numberLabel = new JLabel("");
 
-        JLabel label = new JLabel("Random Number: ");
-        panel.add(label);
+        frame.add(scoreLabel);
+        frame.add(roundLabel);
+        frame.add(numberLabel);
 
-        JButton generateButton = new JButton("Generate");
-        panel.add(generateButton);
-
-        JTextField numberField = new JTextField(10);
-        numberField.setEditable(false);
-        panel.add(numberField);
-
-        generateButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e){
-            Random random = new Random();
-            int randomNumber = random.nextInt(1000);
-            numberField.setText(String.valueOf(randomNumber));
-        }
+        JButton startButton = new JButton("Start");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startRound();
+            }
         });
+        frame.add(startButton);
+
         frame.setVisible(true);
+    }
+
+    private static void startRound() {
+        int displayTime = 3000 - score * 100; // Adjust display time based on score
+        int minRange = (int) Math.pow(10, score); // Adjust minimum range based on score
+        int maxRange = (int) Math.pow(10, score + 2); // Adjust maximum range based on score
+        int randomNumber = (int) (Math.random() * (maxRange - minRange) + minRange);
+        numberLabel.setText(String.valueOf(randomNumber));
+
+        Timer timer = new Timer(displayTime, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numberLabel.setText(""); // Clear the number
+                String userInput = JOptionPane.showInputDialog(null, "Enter the number:");
+                if (userInput != null) {
+                    int userNumber = Integer.parseInt(userInput);
+                    if (userNumber == randomNumber) {
+                        score++;
+                        roundLabel.setText("Round: " + ++round);
+                        scoreLabel.setText("Score: " + score);
+                        if (score >= 10) {
+                            JOptionPane.showMessageDialog(null, "Congratulations! You've won!");
+                            frame.dispose();
+                        } else {
+                            startRound(); // Start a new round
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Game Over! You got " + score + " points.");
+                        frame.dispose();
+                    }
+                }
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 }
