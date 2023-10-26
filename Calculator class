@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Calculator {
+    private double i;
+    private double x;
+
+    public double multiplication() {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Choose your first integer");
+        i = s.nextInt();
+        System.out.println("Choose your second integer");
+        x = s.nextInt();
+        System.out.print("The product of these two numbers is:");
+        return i * x;
+    }
+    public double division(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the dividend");
+        i = s.nextDouble();
+        System.out.println("Enter the divisor");
+        x = s.nextDouble();
+        System.out.print("The quotient of these two numbers is:");
+        return i / x;
+    }
+    public double addition(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the first number to be added");
+        i = s.nextDouble();
+        System.out.println("Enter the second number");
+        x = s.nextDouble();
+        System.out.print("The total of these two numbers is:");
+        return i + x;
+    }
+    public double subtraction(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the number to be subtracted");
+        i = s.nextDouble();
+        System.out.println("By how much to be subtracted?");
+        x = s.nextDouble();
+        System.out.print("The result is:");
+        return i - x;
+    }
+}
