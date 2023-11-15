@@ -22,7 +22,7 @@ public class Horse{
 
 
         names.add("Jodi");
-        names.add("Summer Breeze");
+        names.add("Summer");
         names.add("Raven");
         names.add("Skye");
         names.add("Pocaroo");
@@ -34,21 +34,38 @@ public class Horse{
         names.add("Lightningbolt");
         names.add("Wingstar");
         names.add("Cameo");
-        names.add("Thunder Sparks");
+        names.add("Thunder");
         names.add("Kez");
-        names.add("Rapid Step");
+        names.add("Rapid");
         names.add("Arrow");
         names.add("Kingston");
+
+        System.out.println(YELLOW_TEXT + "The selected horses for this race are..." + RESET);
 
         Random rand = new Random();
         int randNames = 3;
         for (int i = 0; i < randNames; i++) {
-            int randomitem = rand.nextInt(names.size());
-            String randomElement = names.get(randomitem);
+            int randomItem = rand.nextInt(names.size());
+            String randomElement = names.get(randomItem) + "! ";
             System.out.print(randomElement);
         }
+// Need to assign horse a number.
+        Scanner s = new Scanner(System.in);
+        Bettor b = new Bettor();
 
-
-
+        String y = "";
+        while(!y.equals("Yes") && !y.equals("No")){
+            System.out.print("Would you like to bet on this race? Yes or No:");
+            y = s.nextLine().toUpperCase();
+            y = y.substring(0,1).toUpperCase() + y.substring(1).toLowerCase();
+            if(y.equals("Yes")){
+                b.displayBalance();
+                b.deposit();
+                b.gamble();
+            } else if (y.equals("No")) {
+                System.out.println("You're no fun");
+            }
+            else System.out.println("Invalid input");
+        }
     }
 }
