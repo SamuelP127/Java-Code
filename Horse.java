@@ -1,5 +1,5 @@
 import java.util.*;
-public class Horse{
+public class Main{
     public static void main(String[] args){
 
         String RESET = "\u001B[0m";
@@ -42,14 +42,16 @@ public class Horse{
 
         System.out.println(YELLOW_TEXT + "The selected horses for this race are..." + RESET);
 
+        ArrayList<String> horses = new ArrayList<String>();
         Random rand = new Random();
         int randNames = 3;
         for (int i = 0; i < randNames; i++) {
             int randomItem = rand.nextInt(names.size());
-            String randomElement = names.get(randomItem) + "! ";
-            System.out.print(randomElement);
+            String randomElement = names.get(randomItem);
+            horses.add(randomElement);
+            System.out.print(randomElement + "! ");
         }
-// Need to assign horse a number.
+
         Scanner s = new Scanner(System.in);
         Bettor b = new Bettor();
 
@@ -62,10 +64,28 @@ public class Horse{
                 b.displayBalance();
                 b.deposit();
                 b.gamble();
+                String horse = "";
+                while(!horse.equals("1") && !horse.equals("2") &&+ !horse.equals("3")) {
+                    System.out.println("What horse would you like to bet on?");
+                    System.out.print(horses + "\n");
+                    horse = s.nextLine();
+                    if (horse == "1") {
+                        System.out.println("You bet $" + b.getBet() + horses.get(0));
+                    }
+                    if (horse == "2") {
+                        System.out.println("You bet $" + b.getBet() + horses.get(1));
+                    }
+                    if (horse == "3") {
+                        System.out.println("You be $" + b.getBet() + horses.get(2));
+                    }
+                    else System.out.println("Error, wrong input. Must be '1', '2', or '3'");
+                }
+
             } else if (y.equals("No")) {
                 System.out.println("You're no fun");
             }
             else System.out.println("Invalid input");
         }
+
     }
 }
