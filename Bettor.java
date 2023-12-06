@@ -25,12 +25,15 @@ public class Bettor {
         }
         return balance = balance - bet;
     }
-        public void displayBalance(){
-            System.out.println("You have $" + balance);
-        }
-        public double deposit(){
-            System.out.println("How much do you want to deposit?");
-            balance = s.nextInt();
-            return balance;
-        }
+    public double getBet(){
+        return bet;
+    }
+    public void displayBalance(){
+        System.out.println("You have $" + balance);
+    }
+    public double deposit(){
+        System.out.println("How much do you want to deposit?");
+        balance = s.nextInt();
+        return balance;
+    }
 }
