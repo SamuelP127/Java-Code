@@ -65,21 +65,22 @@ public class Main{
                 b.deposit();
                 b.gamble();
                 String horse = "";
-                while(!horse.equals("1") && !horse.equals("2") &&+ !horse.equals("3")) {
+                while (!horse.equals(horses.get(0)) && !horse.equals(horses.get(1)) && !horse.equals(horses.get(2))) {
                     System.out.println("What horse would you like to bet on?");
                     System.out.print(horses + "\n");
                     horse = s.nextLine();
-                    if (horse == "1") {
-                        System.out.println("You bet $" + b.getBet() + horses.get(0));
+                    if (horse.equals(horses.get(0))) {
+                        System.out.println("You bet $" + b.getBet() + " on " + horses.get(0));
+                    } else if (horse.equals(horses.get(1))) {
+                        System.out.println("You bet $" + b.getBet() + " on " + horses.get(1));
+                    } else if (horse.equals(horses.get(2))) {
+                        System.out.println("You bet $" + b.getBet() + " on " + horses.get(2));
+                    } else {
+                        System.out.println("Error, wrong input. Must be '" + horses.get(0) + "', '" + horses.get(1) + "', or '" + horses.get(2) + "'");
                     }
-                    if (horse == "2") {
-                        System.out.println("You bet $" + b.getBet() + horses.get(1));
-                    }
-                    if (horse == "3") {
-                        System.out.println("You be $" + b.getBet() + horses.get(2));
-                    }
-                    else System.out.println("Error, wrong input. Must be '1', '2', or '3'");
                 }
+
+                
 
             } else if (y.equals("No")) {
                 System.out.println("You're no fun");
