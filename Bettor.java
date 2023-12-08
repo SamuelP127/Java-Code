@@ -36,4 +36,14 @@ public class Bettor {
         balance = s.nextInt();
         return balance;
     }
+
+    public double newBalance(){
+        return balance - bet;
+    }
+    public double multiplier(double bet){
+        if(bet >= 1000) return (bet * 1.5) - bet;
+        if(bet >= 500) return (bet * 1.35) - bet;
+        if(bet >= 100) return (bet * 1.25) - bet;
+        else return (bet * 1.1) - bet;
+    }
 }
