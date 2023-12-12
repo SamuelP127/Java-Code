@@ -3,42 +3,28 @@ public class Bettor {
     Scanner s = new Scanner(System.in);
     private double balance;
     private double bet;
-    public double gamble() {
-        System.out.println("How much do you want to bet? You have:$" + balance);
-        bet = s.nextInt();
-        if (bet > balance) {
-            System.out.println("Error: Not enough money in account.");
-            String t = "";
-            while (!t.equals("Money") && !t.equals("Smaller")) {
-                System.out.println("Do you want to deposit more money or bet smaller? 'Money' or 'Smaller':");
-                t = s.nextLine();
-                if (t.equals("Money")) {
-                    System.out.println("How much do you want to deposit?");
-                    balance = s.nextInt();
-                    return balance;
-                }
-                if (t.equals("Smaller")) {
-                    System.out.println("How much do you want to bet? You have:$" + balance);
-                    bet = s.nextInt();
-                }
-            }
-        }
-        return balance = balance - bet;
+
+    public double giveMoney(){
+        System.out.println("As a gift from the committee, here is $1000! If you gamble it all away you lose!");
+        return balance = 1000;
     }
     public double getBet(){
         return bet;
     }
-    public void displayBalance(){
-        System.out.println("You have $" + balance);
-    }
-    public double deposit(){
-        System.out.println("How much do you want to deposit?");
-        balance = s.nextInt();
+    public double getBalance(){
         return balance;
     }
+    public double gamble(){
+        System.out.println("How much do you want to bet? (HINT: The higher the bet, the greater return!)");
+        bet = s.nextInt();
+        return bet;
+    }
 
-    public double newBalance(){
-        return balance - bet;
+    public double win(){
+        return balance = balance + multiplier(getBet());
+    }
+    public double loss(){
+        return balance = balance - getBet();
     }
     public double multiplier(double bet){
         if(bet >= 1000) return (bet * 1.5) - bet;
